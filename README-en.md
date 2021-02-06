@@ -16,24 +16,24 @@ RSocket load balance based on Spring Cloud Service Registry.
 Spring Cloud Service Registry uses `spring.application.name` as service name on registry server, and appName is the serviceId argument in `ReactiveDiscoveryClient.getInstances(String serviceId);`
 
 For example, we have a service app with two service interfaces: MathCalculatorService and ExchangeCalculatorService.  
-Please use Java package naming style to name your app, such as `com-example-calculator`.
+Please use Java package naming style to name your app, such as `com-alibaba-calculator`.
 Service interface naming should follow `String serviceName = appName.replace("-", ".") + "." + interfaceName; ` rule, example as following:
 
-* com.example.calculator.MathCalculatorService
-* com.example.calculator.ExchangeCalculatorService
+* com.alibaba.calculator.MathCalculatorService
+* com.alibaba.calculator.ExchangeCalculatorService
 
-If you use RSocket Broker to proxy the requests, and you should use `broker:` as prefix for service name, such as `broker:com.example.calculator.ExchangeCalculatorService`,
+If you use RSocket Broker to proxy the requests, and you should use `broker:` as prefix for service name, such as `broker:com.alibaba.calculator.ExchangeCalculatorService`,
 and `broker` is the RSocket Broker's name, and you can use `ReactiveDiscoveryClient.getInstances(appName)` to query broker instance list.
 
 Why this naming style?  Take a look at the following steps to call remote RSocket services:
 
-* Extract appName from service full name. For example, appName is `com-example-calculator`  from `com.example.calculator.MathCalculatorService`
+* Extract appName from service full name. For example, appName is `com-alibaba-calculator`  from `com.alibaba.calculator.MathCalculatorService`
 * Invoke `ReactiveDiscoveryClient.getInstances(appName)` to get app instance list
 * Build RSocketRequester with load balance support with `RSocketRequester.Builder.transports(servers)`
 * Call RSocketRequester api with service full name as routing key
 
 ```
- rsocketRequester.route("com.example.calculator.MathCalculatorService.square")
+ rsocketRequester.route("com.alibaba.calculator.MathCalculatorService.square")
                 .data(number)
                 .retrieveMono(Integer.class)
 ```
@@ -41,7 +41,7 @@ Why this naming style?  Take a look at the following steps to call remote RSocke
 This naming style is easy for RSocket to interact with service registry and RSocket service routing.
 
 If you can not inline the appName in service's full name, and you can use appName as schema style for service invocation,  
-such as `calculator-server:com.example.calculator.math.MathCalculatorService`. With this way,  
+such as `calculator-server:com.alibaba.calculator.math.MathCalculatorService`. With this way,  
 and it's easy to migrate other applications into RSocket RPC design.
 
 # References
