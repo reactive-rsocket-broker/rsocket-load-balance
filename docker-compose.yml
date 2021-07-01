@@ -11,7 +11,7 @@ services:
       - "8400:8400"
       - "8600:53/udp"
   nacos:
-    image: nacos/nacos-server:1.4.1
+    image: nacos/nacos-server:1.4.2
     container_name: nacos-standalone
     environment:
       - PREFER_HOST_MODE=hostname
