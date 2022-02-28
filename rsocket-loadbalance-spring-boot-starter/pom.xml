@@ -9,14 +9,14 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.4.8</spring-boot.version>
-        <spring-cloud.version>2020.0.2</spring-cloud.version>
+        <spring-boot.version>2.6.4</spring-boot.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
     </properties>
 
     <name>rsocket-loadbalance-spring-boot-starter</name>
     <description>Spring Boot starter for RSocket load balance with Spring Cloud registry support</description>
     <url>https://github.com/alibaba-rsocket-broker/rsocket-load-balance</url>
-    <inceptionYear>2021</inceptionYear>
+    <inceptionYear>2022</inceptionYear>
 
     <licenses>
         <license>
